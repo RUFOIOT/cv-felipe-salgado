@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Felipe Salgado Ramos — CV Profesional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-light: #112240;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #f8f9fa;
+      --gray: #8892b0;
+      --accent: #64ffda;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a1628 0%, #112240 50%, #0d1f3c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 60px 20px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.05) 0%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    /* Partículas decorativas */
+    .particles {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: float linear infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.4; }
+      90% { opacity: 0.4; }
+      100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 30px;
+      margin-bottom: 30px;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-name span {
+      color: var(--gold);
+    }
+
+    .hero-title {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 300;
+      color: var(--gray);
+      margin-bottom: 30px;
+      animation: fadeInUp 0.8s ease 0.4s both;
+      letter-spacing: 1px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease 0.5s both;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 50px;
+      animation: fadeInUp 0.8s ease 0.6s both;
+    }
+
+    .hero-tag {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.8s both;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: var(--gray);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(20px);
+      background: rgba(10,22,40,0.85);
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ===== PARALLAX BANNER ===== */
+    .parallax-banner {
+      height: 180px;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .parallax-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10,22,40,0.6);
+    }
+
+    .banner-1 {
+      background: linear-gradient(135deg, #112240, #0a1628, #1a3a5c);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+
+    .banner-2 {
+      background: linear-gradient(135deg, #0d1f3c, #152d4d, #0a1628);
+      border-top: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .banner-3 {
+      background: linear-gradient(135deg, #1a3a5c, #0a1628, #112240);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+
+    .banner-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-style: italic;
+      color: var(--gold-light);
+      padding: 20px;
+    }
+
+    .banner-text em {
+      color: var(--white);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    /* ===== SECCIONES ===== */
+    section {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .section-title span {
+      color: var(--gold);
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 20px auto 0;
+    }
+
+    /* ===== EXPERIENCIA TIMELINE ===== */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 48px;
+      padding-left: 30px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.6s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -38px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      background: var(--gold);
+      border-radius: 50%;
+      border: 3px solid var(--navy);
+      box-shadow: 0 0 10px rgba(201,168,76,0.5);
+    }
+
+    .timeline-period {
+      font-size: 0.72rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .timeline-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--gold-light);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .timeline-tag {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.2);
+      color: var(--gold);
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-weight: 500;
+    }
+
+    /* ===== SKILLS GRID ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .skill-card {
+      background: var(--navy-light);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .skill-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .skill-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(201,168,76,0.1);
+    }
+
+    .skill-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .skill-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .skill-list {
+      list-style: none;
+    }
+
+    .skill-list li {
+      font-size: 0.82rem;
+      color: var(--gray);
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-list li::before {
+      content: '▸';
+      color: var(--gold);
+      font-size: 0.7rem;
+    }
+
+    /* ===== LOGROS ===== */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .achievement-card {
+      background: linear-gradient(135deg, var(--navy-light), #0d1f3c);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.5s ease;
+    }
+
+    .achievement-card.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .achievement-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold), transparent);
+    }
+
+    .achievement-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .achievement-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .achievement-desc {
+      font-size: 0.84rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ===== EDUCACIÓN ===== */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .edu-card {
+      background: var(--navy-light);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 12px;
+      padding: 28px;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .edu-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .edu-card:hover {
+      border-color: rgba(201,168,76,0.4);
+    }
+
+    .edu-period {
+      font-size: 0.7rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .edu-degree {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .edu-institution {
+      font-size: 0.84rem;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    /* ===== HOBBIES ===== */
+    .hobbies-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .hobby-pill {
+      background: var(--navy-light);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 50px;
+      padding: 14px 28px;
+      font-size: 0.88rem;
+      color: var(--white);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
+
+    .hobby-pill.visible {
+      opacity: 1;
+    }
+
+    .hobby-pill:hover {
+      background: rgba(201,168,76,0.1);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ===== CONTACTO / CTA ===== */
+    .cta-section {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #0a1628, #112240, #0a1628);
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .cta-subtitle {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff;
+      text-decoration: none;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(37,211,102,0.3);
+      animation: ctaPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
+      50% { box-shadow: 0 15px 50px rgba(37,211,102,0.5); transform: scale(1.03); }
+    }
+
+    .cta-btn:hover {
+      background: linear-gradient(135deg, #2de471, #17a085);
+      transform: scale(1.05) !important;
+    }
+
+    .cta-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .cta-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .cta-link:hover {
+      border-color: var(--gold);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #06101e;
+      text-align: center;
+      padding: 30px;
+      font-size: 0.75rem;
+      color: var(--gray);
+      border-top: 1px solid rgba(201,168,76,0.08);
+    }
+
+    footer span { color: var(--gold); }
+
+    /* ===== ANIMACIONES ===== */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero-stats { gap: 24px; }
+      section { padding: 60px 16px; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      nav, .parallax-banner, .cta-section, .particles { display: none; }
+      body { background: white; color: #111; }
+      .hero { min-height: auto; background: white; padding: 40px 20px; }
+      .hero-name, .section-title { color: #111; }
+      .timeline-desc, .skill-list li, .achievement-desc, .edu-institution, .edu-period { color: #444; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-brand">Felipe Salgado Ramos</div>
+    <ul class="nav-links">
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#logros">Logros</a></li>
+      <li><a href="#educacion">Educación</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- PARTÍCULAS -->
+  <div class="particles" id="particles"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🇪🇨 Ecuador · Blockchain · AI · Emprendimiento</div>
+      <h1 class="hero-name">Felipe <span>Salgado</span> Ramos</h1>
+      <p class="hero-title">Fundador · Blockchain Specialist · Director de Innovación · Asesor Estratégico Global</p>
+      <p class="hero-tagline">"Construyendo el futuro digital de Latinoamérica, un bloque a la vez."</p>
+      <div class="hero-tags">
+        <span class="hero-tag">🔗 Blockchain & Web3</span>
+        <span class="hero-tag">🤖 Inteligencia Artificial</span>
+        <span class="hero-tag">🏫 EdTech</span>
+        <span class="hero-tag">🌐 Tokenización de Activos</span>
+        <span class="hero-tag">🚀 Emprendimiento</span>
+        <span class="hero-tag">🎓 Capacitación UNICEF</span>
+        <span class="hero-tag">💡 NFTs & DeFi</span>
+        <span class="hero-tag">🏆 Hackathon Winner</span>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-number">8+</span>
+          <span class="hero-stat-label">Años en Blockchain</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">20+</span>
+          <span class="hero-stat-label">Proyectos Web3</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">3</span>
+          <span class="hero-stat-label">Países de Operación</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">∞</span>
+          <span class="hero-stat-label">Impacto Social</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARALLAX BANNER 1 -->
+  <div class="parallax-banner banner-1">
+    <div class="banner-text">
+      "La tecnología no es el futuro — es el <em>presente</em> que aún no todos pueden ver."
+    </div>
+  </div>
+
+  <!-- EXPERIENCIA -->
+  <section id="experiencia">
+    <div class="section-header">
+      <p class="section-label">Trayectoria Profesional</p>
+      <h2 class="section-title">Experiencia <span>& Liderazgo</span></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2025 — Presente</div>
+        <div class="timeline-role">Fundador & CEO</div>
+        <div class="timeline-company">Vibramente — Primera Escuela de Tecnología, Blockchain e IA de Ecuador</div>
+        <div class="timeline-desc">
+          Fundé y lidero la primera institución educativa de Ecuador especializada en tecnología emergente, blockchain e inteligencia artificial. Diseñé el modelo pedagógico, la arquitectura curricular y la estrategia de impacto regional para preparar a la próxima generación de líderes digitales latinoamericanos.
+        </div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Blockchain</span>
+          <span class="timeline-tag">IA</span>
+          <span class="timeline-tag">EdTech</span>
+          <span class="timeline-tag">Fundador</span>
+          <span class="timeline-tag">Liderazgo Estratégico</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2021 — Presente</div>
+        <div class="timeline-role">Director de Tecnología, Innovación y Emprendimiento</div>
+        <div class="timeline-company">Eight Academy</div>
+        <div class="timeline-desc">
+          Dirijo la estrategia de innovación tecnológica y el ecosistema de emprendimiento de la academia. Diseño y ejecuto la hackathon estudiantil de proyectos tecnológicos (2da edición en desarrollo), fomentando el talento tech desde edades tempranas.
+        </div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Innovación</span>
+          <span class="timeline-tag">Emprendimiento</span>
+          <span class="timeline-tag">Dirección Tecnológica</span>
+          <span class="timeline-tag">Hackathons</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2025 — Presente</div>
+        <div class="timeline-role">Asesor Externo & Capacitador</div>
+        <div class="timeline-company">UNICEF Chile — Programas Globales de Recaudación</div>
+        <div class="timeline-desc">
+          Asesor y capacitador para programas de innovación en mecanismos de recaudación global. Desarrollo estrategias tecnológicas y de blockchain para potenciar el fundraising internacional de UNICEF Chile, aplicando inteligencia artificial y herramientas Web3 a la misión humanitaria.
+        </div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">UNICEF</span>
+          <span class="timeline-tag">Fundraising Global</span>
+          <span class="timeline-tag">Blockchain</span>
+          <span class="timeline-tag">Capacitación</span>
+          <span class="timeline-tag">Impacto Social</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2020 — Presente</div>
+        <div class="timeline-role">Asesor Privado en Tecnología & Blockchain</div>
+        <div class="timeline-company">Empresas, Empresarios e Instituciones — Asesoría Independiente</div>
+        <div class="timeline-desc">
+          Asesor de cabecera para empresas e instituciones que buscan adaptarse a los cambios tecnológicos globales. Especializado en tokenización de activos, proyectos Web3, implementación de blockchain en procesos de negocio, y estrategia digital. +20 proyectos en crypto, blockchain e IA ejecutados.
+        </div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Tokenización</span>
+          <span class="timeline-tag">Web3</span>
+          <span class="timeline-tag">NFTs</span>
+          <span class="timeline-tag">DeFi</span>
+          <span class="timeline-tag">Asesoría Estratégica</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2023 · 2025</div>
+        <div class="timeline-role">Mentor — ETH Denver x2</div>
+        <div class="timeline-company">ETHDenver — El Hackathon de Ethereum más grande del Mundo</div>
+        <div class="timeline-desc">
+          Mentor de hackers en las ediciones 2023 y 2025 de ETHDenver, el hackathon de Ethereum más relevante del mundo. Guié equipos internacionales en el desarrollo de proyectos DeFi, DAOs y aplicaciones Web3, aportando expertise técnico y estratégico en el ecosistema blockchain global.
+        </div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Ethereum</span>
+          <span class="timeline-tag">Mentoring</span>
+          <span class="timeline-tag">DeFi</span>
+          <span class="timeline-tag">DAO</span>
+          <span class="timeline-tag">ETHDenver 2023</span>
+          <span class="timeline-tag">ETHDenver 2025</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2019 — 2021</div>
+        <div class="timeline-role">Asesor de Tecnología y Proyectos</div>
+        <div class="timeline-company">Eugenio Derbez — Actor & Productor Internacional</div>
+        <div class="timeline-desc">
+          Colaboración como asesor tecnológico y de proyectos con el reconocido actor y productor Eugenio Derbez. Consultoría sobre tendencias tecnológicas, proyectos digitales e innovación aplicada al mundo del entretenimiento y el emprendimiento.
+        </div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Tecnología</span>
+          <span class="timeline-tag">Proyectos Estratégicos</span>
+          <span class="timeline-tag">Consultoría</span>
+          <span class="timeline-tag">Innovación</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2017 — 2021</div>
+        <div class="timeline-role">Gerente de Comercio Exterior</div>
+        <div class="timeline-company">ATU — Ecuador</div>
+        <div class="timeline-desc">
+          Lideré las operaciones de comercio exterior, gestionando relaciones internacionales, logística de importación/exportación, y estrategia de mercado global. Optimicé procesos y amplié la red de partners internacionales de la empresa.
+        </div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Comercio Exterior</span>
+          <span class="timeline-tag">Gerencia</span>
+          <span class="timeline-tag">Logística Internacional</span>
+          <span class="timeline-tag">Negociación</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2014 — 2017</div>
+        <div class="timeline-role">Jefe de Exportaciones</div>
+        <div class="timeline-company">Imptek Chova del Ecuador</div>
+        <div class="timeline-desc">
+          Responsable de las operaciones de exportación, desarrollo de mercados internacionales y cumplimiento de normativas de comercio exterior. Amplié la presencia de la empresa en mercados de América Latina y gestioné negociaciones con partners estratégicos internacionales.
+        </div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Exportaciones</span>
+          <span class="timeline-tag">Mercados Internacionales</span>
+          <span class="timeline-tag">Negocios Internacionales</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2011 — 2014</div>
+        <div class="timeline-role">Jefe Comercial</div>
+        <div class="timeline-company">Repsol Ecuador</div>
+        <div class="timeline-desc">
+          Dirección del área comercial de Repsol en Ecuador. Gestión de cartera de clientes corporativos, desarrollo de estrategias de ventas, y coordinación de equipos comerciales en el sector energético multinacional.
+        </div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Dirección Comercial</span>
+          <span class="timeline-tag">Energía</span>
+          <span class="timeline-tag">Multinacional</span>
+          <span class="timeline-tag">Ventas Estratégicas</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARALLAX BANNER 2 -->
+  <div class="parallax-banner banner-2">
+    <div class="banner-text">
+      Más de <em>20 proyectos</em> en Web3, Crypto, Blockchain e IA — impactando Latinoamérica y el mundo.
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header">
+      <p class="section-label">Stack de Competencias</p>
+      <h2 class="section-title">Expertise <span>& Habilidades</span></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon">🔗</div>
+        <div class="skill-card-title">Blockchain & Web3</div>
+        <ul class="skill-list">
+          <li>Blockchain Specialist (8+ años)</li>
+          <li>Tokenización de Activos Reales (RWA)</li>
+          <li>Smart Contracts & DeFi</li>
+          <li>Creación de Colecciones NFTs</li>
+          <li>DAOs — Organizaciones Descentralizadas</li>
+          <li>Ethereum, Solana, Polygon, BNB Chain</li>
+          <li>Proyectos Web3 (20+ ejecutados)</li>
+          <li>Crypto Strategy & Tokenomics</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-card-title">Inteligencia Artificial</div>
+        <ul class="skill-list">
+          <li>AI Agents & Automatización</li>
+          <li>Prompt Engineering</li>
+          <li>Integración de APIs de IA</li>
+          <li>AI aplicada a Fundraising</li>
+          <li>AI para Ventas Hiper-Personalizadas</li>
+          <li>OpenAI, Claude, Gemini</li>
+          <li>Flujos de trabajo con IA</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">💻</div>
+        <div class="skill-card-title">Desarrollo & Tecnología</div>
+        <ul class="skill-list">
+          <li>Desarrollador de Proyectos Estratégicos</li>
+          <li>Web Scraping & Automatización</li>
+          <li>HTML/CSS/JavaScript</li>
+          <li>APIs & Integrations</li>
+          <li>GitHub & Control de Versiones</li>
+          <li>Plataformas EdTech</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🎯</div>
+        <div class="skill-card-title">Estrategia & Negocios</div>
+        <ul class="skill-list">
+          <li>Asesoría Estratégica Privada</li>
+          <li>Negocios Internacionales</li>
+          <li>Comercio Exterior & Exportaciones</li>
+          <li>Dirección Comercial</li>
+          <li>Fundraising Internacional</li>
+          <li>Modelado de Negocio Web3</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🏫</div>
+        <div class="skill-card-title">Educación & Liderazgo</div>
+        <ul class="skill-list">
+          <li>Diseño Curricular en Tech & Blockchain</li>
+          <li>Capacitación Ejecutiva</li>
+          <li>Mentoring en Hackathons</li>
+          <li>Gestión de Ecosistemas Educativos</li>
+          <li>Programas UNICEF Internacional</li>
+          <li>Organizador de Hackathons</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">📋</div>
+        <div class="skill-card-title">Finanzas & Seguros</div>
+        <ul class="skill-list">
+          <li>Técnico en Seguros</li>
+          <li>Fintech & DeFi</li>
+          <li>Evaluación de Riesgo</li>
+          <li>Estrategia Financiera Digital</li>
+          <li>Crypto Finance</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARALLAX BANNER 3 -->
+  <div class="parallax-banner banner-3">
+    <div class="banner-text">
+      <em>Mentor ETHDenver · Asesor UNICEF Chile · Premio Hackathon EEUU 2020</em>
+    </div>
+  </div>
+
+  <!-- LOGROS -->
+  <section id="logros">
+    <div class="section-header">
+      <p class="section-label">Hitos & Reconocimientos</p>
+      <h2 class="section-title">Logros <span>Destacados</span></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="achievements-grid">
+
+      <div class="achievement-card">
+        <span class="achievement-emoji">🏆</span>
+        <div class="achievement-title">Hackathon Winner — USA 2022</div>
+        <div class="achievement-desc">
+          Ganador de hackathon en Estados Unidos (2022) con el proyecto <strong>Auradogs</strong> — la primera DAO para perros callejeros del mundo. Una solución pionera que combina blockchain y propósito social para generar financiamiento descentralizado para animales en situación de calle.
+        </div>
+      </div>
+
+      <div class="achievement-card">
+        <span class="achievement-emoji">🌐</span>
+        <div class="achievement-title">Fundador de Vibramente (2025)</div>
+        <div class="achievement-desc">
+          Creador de la primera escuela de tecnología, blockchain e inteligencia artificial de Ecuador. Una institución educativa con visión de impacto regional que forma líderes digitales preparados para la economía Web3 y la era de la IA.
+        </div>
+      </div>
+
+      <div class="achievement-card">
+        <span class="achievement-emoji">🐕</span>
+        <div class="achievement-title">Auradogs — Primera DAO para Perros Callejeros</div>
+        <div class="achievement-desc">
+          Proyecto innovador que implementa gobernanza descentralizada (DAO) y tokenización para financiar el rescate, cuidado y adopción de perros callejeros a nivel global. Un caso de uso pionero de blockchain para impacto social animal.
+        </div>
+      </div>
+
+      <div class="achievement-card">
+        <span class="achievement-emoji">🎓</span>
+        <div class="achievement-title">Mentor ETHDenver 2023 & 2025</div>
+        <div class="achievement-desc">
+          Seleccionado como mentor en las ediciones 2023 y 2025 de ETHDenver, el hackathon de Ethereum más grande del mundo. Guió equipos internacionales en el desarrollo de proyectos DeFi, DAOs y aplicaciones descentralizadas de alto impacto.
+        </div>
+      </div>
+
+      <div class="achievement-card">
+        <span class="achievement-emoji">🤝</span>
+        <div class="achievement-title">Asesor Tecnológico de Eugenio Derbez</div>
+        <div class="achievement-desc">
+          Colaboración como asesor tecnológico con Eugenio Derbez, actor y productor reconocido internacionalmente. Consultoría en proyectos de innovación digital, tendencias tecnológicas y oportunidades en el ecosistema Web3.
+        </div>
+      </div>
+
+      <div class="achievement-card">
+        <span class="achievement-emoji">🌍</span>
+        <div class="achievement-title">Asesor & Capacitador UNICEF Chile (2025)</div>
+        <div class="achievement-desc">
+          Desde 2025, desarrollo e implementación de programas de capacitación para nuevos mecanismos de recaudación global de UNICEF Chile. Aplicación de blockchain e IA para innovar en fundraising internacional con impacto humanitario directo.
+        </div>
+      </div>
+
+      <div class="achievement-card">
+        <span class="achievement-emoji">⛓️</span>
+        <div class="achievement-title">+20 Proyectos Web3 Ejecutados</div>
+        <div class="achievement-desc">
+          Trayectoria comprobada con más de 20 proyectos ejecutados en crypto, blockchain e inteligencia artificial. Desde tokenización de activos reales hasta colecciones NFT, DAOs y DeFi — impactando empresas, instituciones e individuos.
+        </div>
+      </div>
+
+      <div class="achievement-card">
+        <span class="achievement-emoji">🏔️</span>
+        <div class="achievement-title">Hackathon Estudiantil Ecuador (2da edición)</div>
+        <div class="achievement-desc">
+          Organizador y creador de la 2da Hackathon Estudiantil de Proyectos Tecnológicos en Ecuador — fomentando el emprendimiento tech, la innovación y el desarrollo de habilidades digitales en jóvenes ecuatorianos.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCACIÓN -->
+  <section id="educacion">
+    <div class="section-header">
+      <p class="section-label">Formación Académica</p>
+      <h2 class="section-title">Educación <span>& Certificaciones</span></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="education-grid">
+
+      <div class="edu-card">
+        <div class="edu-period">Universidad</div>
+        <div class="edu-degree">Ingeniería en Negocios Internacionales</div>
+        <div class="edu-institution">Universidad — Ecuador</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-period">Técnico</div>
+        <div class="edu-degree">Técnico en Seguros</div>
+        <div class="edu-institution">Especialización en el Sector Asegurador</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-period">Especialización</div>
+        <div class="edu-degree">Blockchain Specialist</div>
+        <div class="edu-institution">8+ años de práctica en proyectos reales</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-period">Especialización</div>
+        <div class="edu-degree">Tokenización de Activos & NFTs</div>
+        <div class="edu-institution">Proyectos en producción — Global</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-period">Formación Continua</div>
+        <div class="edu-degree">Inteligencia Artificial & AI Agents</div>
+        <div class="edu-institution">OpenAI, Anthropic, Google AI — Práctica aplicada</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-period">Formación</div>
+        <div class="edu-degree">Desarrollo de Proyectos Estratégicos</div>
+        <div class="edu-institution">8 años de experiencia práctica en tecnología</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <section>
+    <div class="section-header">
+      <p class="section-label">Más allá del trabajo</p>
+      <h2 class="section-title">Pasiones <span>& Estilo de Vida</span></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="hobbies-flex">
+      <div class="hobby-pill">🏔️ Montañismo</div>
+      <div class="hobby-pill">🏃 Trail Running</div>
+      <div class="hobby-pill">🚵 Ciclismo de Montaña</div>
+      <div class="hobby-pill">🥋 Cinturón Negro Kickboxing</div>
+      <div class="hobby-pill">⛰️ Volcán Guagua Pichincha</div>
+      <div class="hobby-pill">🌿 Exploración Natural</div>
+      <div class="hobby-pill">💡 Innovación Constante</div>
+      <div class="hobby-pill">📚 Aprendizaje Continuo</div>
+    </div>
+  </section>
+
+  <!-- CTA / CONTACTO -->
+  <div class="cta-section" id="contacto">
+    <h2 class="cta-title">¿Hablamos de tu próximo <span style="color:var(--gold)">proyecto</span>?</h2>
+    <p class="cta-subtitle">Blockchain, IA, tokenización, Web3, estrategia digital — si tiene impacto, me interesa.</p>
+    <a class="cta-btn" href="https://wa.me/593999793094?text=Hola%20Felipe%2C%20vi%20tu%20CV%20y%20me%20interesa%20conversar%20contigo." target="_blank">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.86L0 24l6.305-1.654A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.012-1.375l-.36-.214-3.733.979.997-3.648-.235-.374A9.817 9.817 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+      Conectar por WhatsApp
+    </a>
+    <div class="cta-links">
+      <a class="cta-link" href="https://www.linkedin.com/in/felipesalgadoramos/" target="_blank">🔗 LinkedIn</a>
+      <a class="cta-link" href="https://github.com/RUFOIOT" target="_blank">💻 GitHub</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>Felipe Salgado Ramos</span> · Blockchain Specialist · Fundador Vibramente · Quito, Ecuador</p>
+    <p style="margin-top:8px; opacity:0.5;">Construido con 🔗 blockchain thinking & ❤️ por Tony Cross</p>
+  </footer>
+
+  <script>
+    // Generar partículas
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.width = (Math.random() * 3 + 1) + 'px';
+      p.style.height = p.style.width;
+      p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+      p.style.animationDelay = (Math.random() * 10) + 's';
+      container.appendChild(p);
+    }
+
+    // IntersectionObserver para animaciones on-scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(
+      '.timeline-item, .skill-card, .achievement-card, .edu-card, .hobby-pill'
+    ).forEach(el => observer.observe(el));
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(6,16,30,0.95)';
+      } else {
+        nav.style.background = 'rgba(10,22,40,0.85)';
+      }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
